@@ -4,39 +4,50 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>Consult</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ConsultDate)
-        </dt>
+<body style="background-image:url(../../Content/img/Interface/Paw_Wallpaper.jpg)">
+    <header>
+        <div class="container col-8">
+            <div class="py-3"></div>
+            <div class="card">
+                <div class="card-header bg-dark text-white text-center">
+                    <h2>Detalles de la Consulta</h2>
+                </div>
+                <div class="py-2"></div>
+                <div class="px-2">
+                    <div>
+                        <dl class="dl-horizontal">
+                            <dt>
+                                @Html.DisplayNameFor(model => model.ConsultDate)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.ConsultDate)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ConsultDate)
-        </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.Description)
+                            </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.Description)
+                            </dd>
+                            <dt>
+                                @Html.DisplayNameFor(model => model.ConsultType)
+                            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
+                            <dd>
+                                @Html.DisplayFor(model => model.ConsultType)
+                            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
+                        </dl>
+                    </div>
+                    <p>
+                        <a href="@Url.Action("Edit","Consults", new { id = Model.Id })" class="btn btn-info">Editar</a>
+                        <a href="@Url.Action("Index","Consults")" class="btn btn-dark">Regresar</a>
+                    </p>
+                </div>
+                <div class="py-2"></div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ConsultType)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ConsultType)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            </div>
+        </div>
+    </header>
+</body>

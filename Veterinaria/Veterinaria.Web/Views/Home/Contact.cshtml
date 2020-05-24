@@ -1,17 +1,53 @@
 ﻿@{
-    ViewBag.Title = "Contact";
+    ViewBag.Title = "Contacto";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    @*Font-Awesome*@
+    <link href="~/Content/fontawesome-free-5.13.0-web/css/all.min.css" rel="stylesheet" />
+    <link href="~/Content/fontawesome-free-5.13.0-web/css/fontawesome.min.css" rel="stylesheet" />
+    <link href="~/Content/fontawesome-free-5.13.0-web/" rel="stylesheet" />
+</head>
+<body style="background-image:url(../../Content/img/Interface/Paw_Wallpaper.jpg)">
+    <header>
+        <div class="container">
+            <div class="py-3"></div>
+            <div class="card">
+                <div class="card-header bg-dark text-white text-center">
+                    <h2>CONTACTANOS</h2>
+                </div>
+                <div class="card-body text-justify">
+                    <h4>
+                        Con gusto podemos ayudarte en cualquier duda que tengas.
+                        Conoce más sobre nosotros a través de los siguientes medios:
+                    </h4>
+                </div>
+                <div class="container">
+                    <div class="row text-center text-white">
+                        <div class="col-sm-6 py-2">
+                            <div class="card border-0" style="width: 32rem;">
+                                <img src="~/Content/img/Interface/dog-carries-mail.jpg" class="card-img-top" alt="..." style="object-fit:cover;  height:18vw;">
+                                <div class="card-body bg-dark">
+                                    <h4 class="card-text text-center">Jordi.Banuelos17@tectijuana.edu.mx</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 py-2">
+                            <div class="card border-0" style="width: 32rem;">
+                                <img src="~/Content/img/Interface/Screen_Shot_2019-01-25_at_10.22.41_AM.jpg" class="card-img-top" alt="..." style="object-fit:cover; height:18vw;">
+                                <div class="card-body bg-dark">
+                                    <h4 class="card-text text-center">(664) 555-3383</h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+                <div class="py-3"></div>
+            </div>
+        </div>
+    </header>
+</body>
+</html>
