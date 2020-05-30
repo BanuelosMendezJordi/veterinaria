@@ -177,6 +177,7 @@
     <Compile Include="Controllers\OwnersController.cs" />
     <Compile Include="Controllers\PetsController.cs" />
     <Compile Include="Controllers\PrincipalController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Controllers\VeterinariesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -197,6 +198,14 @@
     <Compile Include="Migrations\202005232116121_UpdatePets.Designer.cs">
       <DependentUpon>202005232116121_UpdatePets.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005252334111_UpdateOwner.cs" />
+    <Compile Include="Migrations\202005252334111_UpdateOwner.Designer.cs">
+      <DependentUpon>202005252334111_UpdateOwner.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005302131364_ImagenPet.cs" />
+    <Compile Include="Migrations\202005302131364_ImagenPet.Designer.cs">
+      <DependentUpon>202005302131364_ImagenPet.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Consult.cs" />
@@ -206,6 +215,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Owner.cs" />
     <Compile Include="Models\Pet.cs" />
+    <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Models\Veterinary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -1843,6 +1853,7 @@
     <Content Include="Content\fontawesome-free-5.13.0-web\webfonts\fa-brands-400.svg" />
     <Content Include="Content\fontawesome-free-5.13.0-web\webfonts\fa-regular-400.svg" />
     <Content Include="Content\fontawesome-free-5.13.0-web\webfonts\fa-solid-900.svg" />
+    <Content Include="Content\img\4fecdf203e93afdfd0360d3f8194ccbf.png" />
     <Content Include="Content\img\Interface\1_Cat_Up.jpg" />
     <Content Include="Content\img\Interface\1_Dog_Cone.jpg" />
     <Content Include="Content\img\Interface\1_Kittens_Grass.jpg" />
@@ -2083,9 +2094,12 @@
     <Content Include="Views\Owners\Details.cshtml" />
     <Content Include="Views\Owners\Edit.cshtml" />
     <Content Include="Views\Owners\Index.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Users\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\img\PetPictures\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -2110,6 +2124,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005232116121_UpdatePets.resx">
       <DependentUpon>202005232116121_UpdatePets.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005252334111_UpdateOwner.resx">
+      <DependentUpon>202005252334111_UpdateOwner.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005302131364_ImagenPet.resx">
+      <DependentUpon>202005302131364_ImagenPet.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

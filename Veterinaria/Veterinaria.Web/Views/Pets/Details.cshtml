@@ -1,96 +1,71 @@
 ﻿@model Veterinaria.Web.Models.Pet
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalles";
 }
 
     <body style="background-image:url(../../Content/img/Interface/Paw_Wallpaper.jpg)">
-        <header>
-            <div class="container col-8">
-                <div class="py-3"></div>
-                <div class="card">
-                    <div class="card-header bg-dark text-white text-center">
-                        <h2>Detalles</h2>
+        <div class="py-2"></div>
+        <div class="row col-md-12 justify-content-between">
+            <div class="col-md-6">
+                <div class="card mb-3">
+                    <div class="card-header py-2 bg-info">
+                        <h5 class="text-center m-0 text-white">@Model.Name</h5>
                     </div>
-                    <div class="py-2"></div>
-                    <div class="px-2">
-                        <div>
-                            <dl class="dl-horizontal">
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.Name)
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayFor(model => model.Name)
-                                </dd>
-
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.PetType)
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayFor(model => model.PetType)
-                                </dd>
-
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.Age)
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayFor(model => model.Age)
-                                </dd>
-
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.BirthDate)
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayFor(model => model.BirthDate)
-                                </dd>
-
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.Color)
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayFor(model => model.Color)
-                                </dd>
-
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.Raza)
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayFor(model => model.Raza)
-                                </dd>
-
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.Weight)
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayFor(model => model.Weight)
-                                </dd>
-
-                                <dt>
-                                    @Html.DisplayNameFor(model => model.Height)
-                                </dt>
-
-                                <dd>
-                                    @Html.DisplayFor(model => model.Height)
-                                </dd>
-
-                            </dl>
-                        </div>
-                        <p>
-                            <a href="@Url.Action("Edit","Pets", new { id = Model.Id })" class="btn btn-info">Editar</a>
-                            <a href="@Url.Action("Index","Pets")" class="btn btn-dark">Regresar</a>
-                        </p>
+                    <div class="card-body">
+                        <table class="table table-sm">
+                            <tr>
+                                <td>Nombre</td>
+                                <td>@Model.Name</td>
+                            </tr>
+                            <tr>
+                                <td>Tipo</td>
+                                <td>@Model.PetType</td>
+                            </tr>
+                            <tr>
+                                <td>Edad</td>
+                                <td>@Model.Age Meses</td>
+                            </tr>
+                            <tr>
+                                <td>Fecha de Nacimiento</td>
+                                <td>@Model.BirthDate.ToShortDateString()</td>
+                            </tr>
+                            <tr>
+                                <td>Raza</td>
+                                <td>@Model.Raza</td>
+                            </tr>
+                            <tr>
+                                <td>Peso</td>
+                                <td>@Model.Weight</td>
+                            </tr>
+                            <tr>
+                                <td>Altura</td>
+                                <td>@Model.Height</td>
+                            </tr>
+                        </table>
                     </div>
                 </div>
             </div>
-            <div class="py-2"></div>
-        </header>
+            <div class="col-md-6">
+                <div class="">
+                    <div class="card mb-3">
+                        <div class="card-header py-2 bg-info">
+                            <h5 class="text-center m-0 text-white">Fotografia</h5>
+                        </div>
+                        <div class="card-header">
+                            @if (Model.PetImage == null)
+                            {
+                                <img src="~/Content/img/4fecdf203e93afdfd0360d3f8194ccbf.png" class="img-thumbnail" width="500" />
+                            }
+                            else if (Model.PetImage != null)
+                            {
+                                <img src="~/Content/img/PetPictures/@Model.PetImage" class="img-thumbnail" width="500" />
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </body>
 
 

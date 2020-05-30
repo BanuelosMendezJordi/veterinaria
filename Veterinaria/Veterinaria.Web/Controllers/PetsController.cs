@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 using Veterinaria.Web.Models;
 
@@ -14,10 +16,18 @@ namespace Veterinaria.Web.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+        public ActionResult AllPets()
+        {
+            var pets = db.Pets.Include(o=>o.Owner).Include(u=>u.Owner.ApplicationUser).ToList();
+            return View (pets);
+        }
         // GET: Pets
         public ActionResult Index()
         {
-            return View(db.Pets.ToList());
+            var user=User.Identity.GetUserId();
+            var ow = db.Owners.Where(o => o.UserId == user).FirstOrDefault();
+            var pets = db.Pets.Include(u => u.Owner).Where(p => p.OwnerId == ow.id).ToList();
+            return View(pets);
         }
 
         // GET: Pets/Details/5
@@ -46,10 +56,20 @@ namespace Veterinaria.Web.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Name,PetType,Age,BirthDate,Color,Raza,Weight,Height")] Pet pet)
+        public ActionResult Create(Pet pet, HttpPostedFileBase hpb)
         {
             if (ModelState.IsValid)
             {
+                if (hpb != null)
+                {
+                    string pictureName = System.IO.Path.GetFileName(hpb.FileName);
+                    string picturePath = "~/Content/img/PetPictures/" + pet.Name + "_" + pictureName;
+                    hpb.SaveAs(Server.MapPath(picturePath));
+                    pet.PetImage= pet.Name + "_" + pictureName;
+                }
+                var userId = User.Identity.GetUserId();
+                var own = db.Owners.Where(o => o.UserId == userId).FirstOrDefault();
+                pet.OwnerId = own.id;
                 db.Pets.Add(pet);
                 db.SaveChanges();
                 return RedirectToAction("Index");

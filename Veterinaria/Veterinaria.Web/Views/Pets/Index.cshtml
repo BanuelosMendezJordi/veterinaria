@@ -1,90 +1,143 @@
 ﻿@model IEnumerable<Veterinaria.Web.Models.Pet>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Mascotas";
 }
 
     <body style="background-image:url(../../Content/img/Interface/Paw_Wallpaper.jpg)">
-        <header>
-            <div class="container">
-                <div class="py-3"></div>
-                <div class="card">
-                    <div class="card-header bg-dark text-white text-center">
-                        <h2>MASCOTAS</h2>
-                        <a href="@Url.Action("Create","Pets")" class="btn btn-success">Anexar Mascota</a>
+        <div class="row justify-content-center m-3">
+            <h5 class="m-0 text-dark">Mis Mascotas</h5>
+        </div>
+        <hr />
+        <p class="m-4">
+            <a href="#" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
+                <span class="icon btn-icon-split"><i class="fas fa-plus-circle"></i></span>
+                <span class="text">Agregar Mascota</span>
+            </a>
+        </p>
+        <div class="row justify-content-center m-3">
+            @foreach (var item in Model)
+            {
+                <div class="col-xl-3 col-md-6 mb-4">
+                    <a href="@Url.Action("Details","Pets", new { id=item.Id})">
+                        <div class="card border-left-primary shadow h-100 py-2 bg-dark">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2 font-weight-bold text-white">
+                                        <div class="text-xs text-primary text-uppercase mb-1">@item.Name</div>
+                                        <div class="h5 mb-0 font-weight-bold text-white">@item.PetType</div>
+                                    </div>
+                                    <div class="col-auto">
+                                        @if (item.PetImage != null)
+                                        {
+                                            <img src="~/Content/img/PetPictures/@item.PetImage" width="100" class="img-thumbnail"/>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            }
+        </div>
 
+        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-title bg-dark py-2">
+                        <h5 class="text-center text-white">Nueva Mascota</h5>
                     </div>
-                    <div class="py-2"></div>
-                    <div class="px-2">
-                        <table class="table">
-                            <tr>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Name)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.PetType)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Age)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.BirthDate)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Color)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Raza)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Weight)
-                                </th>
-                                <th>
-                                    @Html.DisplayNameFor(model => model.Height)
-                                </th>
-                                <th></th>
-                            </tr>
+                    <div class="modal-body">
+                        <form action="@Url.Action("Create","Pets")" method="post" enctype="multipart/form-data">
+                            @Html.AntiForgeryToken()
+                            <div class="row justify-content-between">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-md-2">Nombre</label>
+                                        <div class="col-md-10">
+                                            <input type="text" name="Name" value="" placeholder="Nombre de la Mascota" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-md-2">Tipo</label>
+                                        <div class="col-md-10">
+                                            <input type="text" name="PetType" value="" placeholder="Tipo de Mascota" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-between">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-md-2">Edad</label>
+                                        <div class="col-md-10">
+                                            <input type="number" name="Age" value="" placeholder="Edad" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-md-6">Fecha de Nacimiento</label>
+                                        <div class="col-md-10">
+                                            <input type="date" name="BirthDate" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-between">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-md-2">Color</label>
+                                        <div class="col-md-10">
+                                            <input type="text" name="Color" value="" placeholder="Escriba el color de su mascota" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-md-2">Raza</label>
+                                        <div class="col-md-10">
+                                            <input type="text" name="Raza" value="" placeholder="Escriba la raza de su mascota" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row justify-content-between">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-md-2">Peso</label>
+                                        <div class="col-md-10">
+                                            <input type="number" name="Weight" value="" placeholder="Ingresa el peso de su mascota" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="col-md-2">Altura</label>
+                                        <div class="col-md-10">
+                                            <input type="number" name="Height" value="" placeholder="Ingresa la estatura de su mascota" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2">Fotografia</label>
+                                <div class="col-md-10">
+                                    <input type="file" name="hpb" class="form-control-file"/>
+                                </div>
+                            </div>
 
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Name)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.PetType)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Age)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.BirthDate)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Color)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Raza)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Weight)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Height)
-                                    </td>
-                                    <td>
-                                        <a href="@Url.Action("Edit","Pets", new { id = item.Id })" class="btn btn-dark">Editar</a>
-                                        <a href="@Url.Action("Details","Pets", new { id = item.Id })" class="btn btn-warning">Detalles</a>
-                                        <a href="@Url.Action("Delete","Pets", new { id = item.Id })" class="btn btn-danger">Eliminar</a>
-                                    </td>
-                                </tr>
-                            }
-                        </table>
-
+                            <div class="col-md-10">
+                                <button class="btn btn-primary btn-sm" type="submit">Agregar</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-        </header>
+        </div>
+
     </body>
 
 

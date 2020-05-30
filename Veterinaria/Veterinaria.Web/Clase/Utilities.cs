@@ -28,7 +28,7 @@ namespace Veterinaria.Web.Clase
             var userAsp = userManager.FindByName("admin@mail.com");
             if (userAsp == null)
             {
-                CreateUserAsp("admin2@mail.com", "QWERTY", "Admin");
+                CreateUserAsp("admin@mail.com", "QWERTY", "Admin");
             }
         }
 
@@ -39,7 +39,14 @@ namespace Veterinaria.Web.Clase
             if (userclient == null)
             {
                 CreateUserAsp("cliente@veterinary.com","cliente123","Owner");
+                userclient = clientdb.FindByName("cliente@veterinary.com");
+                var owner = new Owner {
+                    UserId = userclient.Id,
+                };
+                db.Owners.Add(owner);
+                db.SaveChanges();
             }
+            
         }
         public static void CreateUserAsp(string email, string password, string rol)
         {
